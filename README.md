@@ -1,41 +1,46 @@
-# SWISSTRONIK Technical Task 3
+# SWISSTRONIK Technical Task 2
 
-Steps to mint ERC-721 Token
+Steps to mint 100 ERC-20 Tokens
 
 1. Clone repository
 ```shell
-https://github.com/fung93/swisstronik-task-3-ERC721.git
+https://github.com/fung93/swisstronik-task-2.git
 ```
 ```shell
-cd swisstronik-erc721-mint-token
+cd swisstronik-task-2
 ```
-2. Install Dependency
+2. Make the erc20.sh script executable:
 ```shell
-npm install
+chmod +x erc20.sh
 ```
-3. Set .env File
+3. Run the script
 ```shell
-PRIVATE_KEY="your private key"
+./erc20.sh
 ```
 4. Create smart contract
 ```shell
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.8.9;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-contract ZunXBT is ERC721, Ownable {
-    constructor(address initialOwner) ERC721("FUNG", "FNG") Ownable(initialOwner) {}
+contract TestToken is ERC20 {
+    constructor()ERC20("FUNG","FNG"){} 
 
-    function safeMint(address to, uint256 tokenId) public onlyOwner {
-        _safeMint(to, tokenId);
+    function mint100tokens() public {
+        _mint(msg.sender,100*10**18);
     }
+
+    function burn100tokens() public{
+        _burn(msg.sender,100*10**18);
+    }
+    
 }
 ```
 5. Deploy smart contract
 6. Mint token
-7. Finished
+7. Trasfer token
+8. Finished
    - Copy the address and paste the address to testnet dashboard
    - Copy the transaction link to testnet dashboard
    - Push this project to your github and paste the repository link to testnet dashboard
